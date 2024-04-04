@@ -1,0 +1,11 @@
+.container {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 24px;
+}
+
+.searchContainer {
+	display: flex;
+	padding: 16px;
+	background-color: var(--bg-dark-gray);
+}
