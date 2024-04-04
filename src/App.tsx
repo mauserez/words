@@ -7,7 +7,7 @@ import { store, persistor } from "./shared/redux/store";
 import { Layout } from "./widgets/layout/Layout";
 import { SearchWords } from "./widgets/words/search-words/SearchWords";
 import { StarredWords } from "./widgets/words/starred-words/StarredWords";
-
+addd err
 const App = () => {
 	return (
 		<Provider store={store}>
