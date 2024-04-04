@@ -3,13 +3,14 @@ import { Header } from "../header/Header";
 import { Outlet } from "react-router-dom";
 
 export type LayoutProps = {
-	children?: ReactNode;
+  children?: ReactNode;
 };
 export const Layout = (props: LayoutProps) => {
-	return (
-		<div className="App">
-			<Header />
-			<Outlet />
-		</div>
-	);
+  console.log(props);
+  return (
+    <div className="App">
+      <Header />
+      <Outlet />
+    </div>
+  );
 };

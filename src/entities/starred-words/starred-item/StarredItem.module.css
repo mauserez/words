@@ -1,67 +1,67 @@
 .itemContainer {
-	border-radius: 4px;
-	overflow: hidden;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .itemContainer:hover {
-	box-shadow: 0 0 12px #dedede;
+  box-shadow: 0 0 12px #dedede;
 }
 
 .item {
-	background-color: #fff;
-	display: flex;
-	padding: 4px 16px;
-	gap: 16px;
-	align-items: center;
-	height: 40px;
-	border-radius: 4px;
-	width: 100%;
-	justify-content: space-between;
-	border-bottom: 1px solid #efefef;
-	border-radius: 0;
+  background-color: #fff;
+  display: flex;
+  padding: 4px 16px;
+  gap: 16px;
+  align-items: center;
+  height: 40px;
+  border-radius: 4px;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+  border-radius: 0;
 }
 
 .info {
-	display: flex;
-	gap: 16px;
-	align-items: center;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 
-	svg {
-		cursor: pointer;
-	}
+  svg {
+    cursor: pointer;
+  }
 }
 
 .infoText {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .accord {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.3s ease-out;
-	background-color: #fff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #fff;
 }
 
 .accordOpen {
-	display: block;
-	max-height: 500px;
-	transition: max-height 0.3s ease-in;
+  display: block;
+  max-height: 500px;
+  transition: max-height 0.3s ease-in;
 }
 
 .word {
-	font-weight: bold;
-	margin-right: 24px;
+  font-weight: bold;
+  margin-right: 24px;
 }
 
 .type {
-	font-style: italic;
+  font-style: italic;
 }
 
 .meaningWrap {
-	padding: 16px;
-	display: flex;
+  padding: 16px;
+  display: flex;
 }

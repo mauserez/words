@@ -15,11 +15,13 @@ type StarredListProps = {
 export const StarredList = (props: StarredListProps) => {
 	const { items } = props;
 	const dispatch = useAppDispatch();
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const dragItem = useRef<any>(null);
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const dragOverItem = useRef<any>(null);
 
 	const handleSort = () => {
-		let _items = [...items];
+		const _items = [...items];
 		const draggedItemContent = _items.splice(dragItem.current, 1)[0];
 		//switch the position
 		_items.splice(dragOverItem.current, 0, draggedItemContent);
@@ -36,10 +38,10 @@ export const StarredList = (props: StarredListProps) => {
 				return (
 					<StarredItem
 						draggable
-						onDragStart={(e) => {
+						onDragStart={() => {
 							dragItem.current = idx;
 						}}
-						onDragEnter={(e) => {
+						onDragEnter={() => {
 							dragOverItem.current = idx;
 						}}
 						onDragEnd={handleSort}

@@ -5,14 +5,14 @@ import s from "./Input.module.css";
 
 type InputProps = ComponentProps<"input">;
 export const Input = (props: InputProps) => {
-	const { className = "", placeholder = "Поиск" } = props;
+  const { className = "", placeholder = "Поиск" } = props;
 
-	return (
-		<input
-			style={{ fontFamily: "Arial, FontAwesome" }}
-			placeholder={placeholder}
-			className={clsx(s.input, className)}
-			{...props}
-		/>
-	);
+  return (
+    <input
+      style={{ fontFamily: "Arial, FontAwesome" }}
+      placeholder={placeholder}
+      className={clsx(s.input, className)}
+      {...props}
+    />
+  );
 };

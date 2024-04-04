@@ -1,24 +1,24 @@
 .input {
-	height: 46px;
-	width: 100%;
-	border-radius: 4px;
-	padding: 0 12px;
-	outline: none;
-	border: 1px solid #ddd;
+  height: 46px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 0 12px;
+  outline: none;
+  border: 1px solid #ddd;
 }
 
 .input:active,
 .input:focus,
 .input:focus-visible {
-	border: 1px solid var(--color-blue);
-	outline: none;
-	outline-width: 0;
+  border: 1px solid var(--color-blue);
+  outline: none;
+  outline-width: 0;
 }
 
 .input::-webkit-input-placeholder {
-	text-align: right;
+  text-align: right;
 }
 
 .input:-moz-placeholder {
-	text-align: right;
+  text-align: right;
 }
