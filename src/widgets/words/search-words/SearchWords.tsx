@@ -37,6 +37,7 @@ export const SearchWords = () => {
 
 	useEffect(() => {
 		if (!debouncedSearch.term) {
+			setBooks([]);
 			return;
 		}
 
