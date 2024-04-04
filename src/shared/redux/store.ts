@@ -16,6 +16,8 @@ const persistConfig = {
 	blacklist: ["words", "wordsApi"],
 };
 
+error;
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const makeStore = (/* preloadedState?: Partial<RootState> */) => {
@@ -32,7 +34,7 @@ export const makeStore = (/* preloadedState?: Partial<RootState> */) => {
 	setupListeners(store.dispatch);
 	return store;
 };
-err;
+
 export const store = makeStore();
 export const persistor = persistStore(store);
 
