@@ -1,5 +1,5 @@
 import axios from "axios";
-
+err;
 export const wordsApi = axios.create({
 	baseURL: "https://wordsapiv1.p.rapidapi.com/words?letterPattern=^a.{4}$",
 	headers: {
