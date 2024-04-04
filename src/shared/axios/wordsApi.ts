@@ -1,9 +1,6 @@
 import axios from "axios";
 
 export const wordsApi = axios.create({
-  baseURL: "https://wordsapiv1.p.rapidapi.com/words?letterPattern=^a.{4}$",
-  headers: {
-    "X-RapidAPI-Key": "c519f954f2msh46cfd45adaff4f5p162ed6jsn34b7e02760ec",
-    "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
-  },
+	//baseURL: "https://api.dictionaryapi.dev/api/v2/entries/en/",
+	baseURL: "https://book-backend-api.vercel.app/api/v1/",
 });

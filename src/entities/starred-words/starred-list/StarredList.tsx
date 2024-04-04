@@ -15,7 +15,7 @@ type StarredListProps = {
 export const StarredList = (props: StarredListProps) => {
 	const { items } = props;
 	const dispatch = useAppDispatch();
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	// eslint-disable-next-line
 	const dragItem = useRef<any>(null);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const dragOverItem = useRef<any>(null);

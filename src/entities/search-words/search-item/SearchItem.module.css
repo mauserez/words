@@ -39,19 +39,6 @@
 	-webkit-box-orient: vertical;
 }
 
-.accord {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.3s ease-out;
-	background-color: #fff;
-}
-
-.accordOpen {
-	display: block;
-	max-height: 500px;
-	transition: max-height 0.3s ease-in;
-}
-
 .word {
 	font-weight: bold;
 	margin-right: 24px;
@@ -60,9 +47,4 @@
 
 .type {
 	font-style: italic;
-}
-
-.meaningWrap {
-	padding: 16px;
-	display: flex;
 }
