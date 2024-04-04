@@ -60,7 +60,7 @@
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx}": [
 			"pretty-quick --staged",
-			"eslint --fix && type-check",
+			"eslint --fix && tsc --noEmit",
 			"git add"
 		]
 	}
