@@ -55,11 +55,11 @@
 		"vitest": "^1.2.0"
 	},
 	"lint-staged": {
-		"*.js": "eslint"
+		"*.js": "eslint ."
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged && pretty-quick --staged"
+			"commit": "lint-staged && pretty-quick --staged"
 		}
 	}
 }

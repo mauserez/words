@@ -20,7 +20,7 @@ export interface WordsSliceState {
 	words: Word[];
 	status: "idle" | "loading" | "failed";
 }
-dsdasd;
+
 export const initialState: WordsSliceState = {
 	words: [
 		{
