@@ -15,9 +15,7 @@ const persistConfig = {
 	storage,
 	blacklist: ["words", "wordsApi"],
 };
-
-error;
-
+asdasd;
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const makeStore = (/* preloadedState?: Partial<RootState> */) => {

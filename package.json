@@ -12,7 +12,8 @@
 		"format": "prettier --write .",
 		"lint": "tsc --noEmit && eslint .",
 		"lint:fix": "tsc --noEmit && eslint --fix .",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.0.1",
