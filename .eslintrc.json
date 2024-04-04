@@ -25,7 +25,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/**/*.{ts,js,tsx,jsx}"]
+			"files": ["src/**/*.ts"]
 		}
 	]
 }
