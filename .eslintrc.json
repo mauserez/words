@@ -27,5 +27,6 @@
 		{
 			"files": ["src/**/*.ts"]
 		}
-	]
+	],
+	"ignorePatterns": ["/dist", "/node_modules"]
 }
