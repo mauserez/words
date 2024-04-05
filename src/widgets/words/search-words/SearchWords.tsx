@@ -13,8 +13,8 @@ import {
 	SearchStart,
 } from "../../../entities/search-words";
 
-import s from "../style.module.css";
 import { useDebounce } from "../../../shared/hooks/useDebounce";
+import s from "../style.module.css";
 
 type SearchWord = { term: string };
 
@@ -41,7 +41,6 @@ export const SearchWords = () => {
 			return;
 		}
 
-		console.log(debouncedSearch);
 		/* getWords("books", { term: debouncedSearch.term }, controller.signal).then(
 			(words) => {
 				console.log(words);

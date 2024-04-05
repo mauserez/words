@@ -21,9 +21,9 @@ export const getWords = async (
 	signal?: GenericAbortSignal
 ) => {
 	const { term } = params;
-	console.log(term);
+
 	return await wordsApi
-		.get<Word[]>(`/${endpoint}`, { signal: signal })
+		.get<Word[]>(`/${term}`, { signal: signal })
 		.then((res) => {
 			return res.data;
 		})
