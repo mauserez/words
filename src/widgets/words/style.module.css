@@ -1,11 +1,13 @@
 .container {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 24px;
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 24px;
 }
 
 .searchContainer {
-  display: flex;
-  padding: 16px;
-  background-color: var(--bg-dark-gray);
+	display: flex;
+	padding: 16px;
+	background-color: var(--bg-dark-gray);
+	flex-direction: column;
+	gap: 16px;
 }

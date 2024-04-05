@@ -1,36 +1,60 @@
 import { useAppSelector } from "../../../shared/redux/hooks";
 import {
-  SearchWordPayload,
-  selectWords,
+	SearchWordPayload,
+	selectWordTypes,
+	selectWords,
 } from "../../../shared/redux/slices/words/wordsSlice";
 import { useState } from "react";
 
 import { Input } from "../../../shared/input/Input";
 import { StarredList } from "../../../entities/starred-words/starred-list/StarredList";
 
-import s from "../style.module.css";
+import s from "./StarredWords.module.css";
+import style from "../style.module.css";
+import clsx from "clsx";
 
 export const StarredWords = () => {
-  const [search, setSearch] = useState<SearchWordPayload>({
-    text: "",
-    type: "",
-  });
+	const [search, setSearch] = useState<SearchWordPayload>({
+		text: "",
+		types: [],
+	});
 
-  const words = useAppSelector((state) => selectWords(state, search));
+	const types = useAppSelector((state) => selectWordTypes(state));
+	const words = useAppSelector((state) => selectWords(state, search));
 
-  return (
-    <div>
-      <h1>Starred Words</h1>
-      <div className={s.container}>
-        <div className={s.searchContainer}>
-          <Input
-            onChange={(e) => {
-              setSearch({ ...search, text: e.target.value });
-            }}
-          />
-        </div>
-        <StarredList items={words} />
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<h1>Starred Words</h1>
+			<div className={style.container}>
+				<div className={style.searchContainer}>
+					<Input
+						onChange={(e) => {
+							setSearch({ ...search, text: e.target.value });
+						}}
+					/>
+					<div className={s.checks}>
+						{types.map((type) => (
+							<div className={s.checksItem} key={type}>
+								<div
+									onClick={() => {
+										const newSearchTypes = search.types.includes(type)
+											? search.types.filter((stype) => stype !== type)
+											: [...search.types, type];
+										setSearch({ ...search, types: newSearchTypes });
+									}}
+									className={clsx({
+										[s.check]: true,
+										[s.checkActive]: search.types.includes(type),
+									})}
+								></div>
+
+								<div className={s.type}>{type}</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<StarredList items={words} />
+			</div>
+		</div>
+	);
 };
