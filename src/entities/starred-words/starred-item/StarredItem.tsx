@@ -1,14 +1,13 @@
+import { ComponentProps, useState } from "react";
 import {
 	removeWord,
 	Word,
 } from "../../../shared/redux/slices/words/wordsSlice";
 import { useAppDispatch } from "../../../shared/redux/hooks";
 import { Star } from "../../../shared/icons";
-//import { BsList } from "react-icons/bs";
 import { VscListSelection } from "react-icons/vsc";
 
 import clsx from "clsx";
-import { ComponentProps, useState } from "react";
 import s from "./StarredItem.module.css";
 
 type StarredItemProps = {

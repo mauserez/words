@@ -1,17 +1,18 @@
+import { useState } from "react";
+
 import { useAppSelector } from "../../../shared/redux/hooks";
 import {
 	SearchWordPayload,
 	selectWordTypes,
 	selectWords,
 } from "../../../shared/redux/slices/words/wordsSlice";
-import { useState } from "react";
 
 import { Input } from "../../../shared/input/Input";
-import { StarredList } from "../../../entities/starred-words/starred-list/StarredList";
+import { StarredList } from "../../../entities/starred-words";
 
-import s from "./StarredWords.module.css";
-import style from "../style.module.css";
 import clsx from "clsx";
+import style from "../style.module.css";
+import s from "./StarredWords.module.css";
 
 export const StarredWords = () => {
 	const [search, setSearch] = useState<SearchWordPayload>({
@@ -40,6 +41,7 @@ export const StarredWords = () => {
 										const newSearchTypes = search.types.includes(type)
 											? search.types.filter((stype) => stype !== type)
 											: [...search.types, type];
+
 										setSearch({ ...search, types: newSearchTypes });
 									}}
 									className={clsx({
@@ -53,6 +55,7 @@ export const StarredWords = () => {
 						))}
 					</div>
 				</div>
+
 				<StarredList items={words} />
 			</div>
 		</div>

@@ -4,7 +4,7 @@ import {
 	type Word,
 	setWords,
 } from "../../../shared/redux/slices/words/wordsSlice";
-import { StarredItem } from "../starred-item/StarredItem";
+import { StarredItem } from "..";
 
 import s from "./StarredList.module.css";
 
