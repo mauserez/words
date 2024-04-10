@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --color-blue: #81bef5;
-  --bg-blue: #81bef5;
-  --bg-dark-gray: #efefef;
-  --bg-gray: #f7f5f5;
+	--color-blue: #81bef5;
+	--bg-blue: #81bef5;
+	--bg-dark-gray: #efefef;
+	--bg-gray: #f7f5f5;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 h1,
@@ -19,24 +19,39 @@ h3,
 h4,
 h5,
 h6 {
-  text-align: left;
+	text-align: left;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-gray);
-  padding: 16px;
-  width: 1024px;
-  margin: 0 auto;
-  color: #333;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--bg-gray);
+	padding: 16px;
+	width: 1024px;
+	margin: 0 auto;
+	color: #333;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+.fadeIn {
+	animation: fadeIn ease 2s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

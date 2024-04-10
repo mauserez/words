@@ -1,0 +1,21 @@
+.meaningWrap {
+	padding: 16px;
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.meaning {
+	display: flex;
+	gap: 16px;
+}
+
+.type {
+	font-style: italic;
+	white-space: nowrap;
+	margin-right: 24px;
+}
+
+.star {
+	width: 24px;
+}

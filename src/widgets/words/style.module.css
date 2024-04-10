@@ -11,3 +11,9 @@
 	flex-direction: column;
 	gap: 16px;
 }
+
+.listWrap {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}

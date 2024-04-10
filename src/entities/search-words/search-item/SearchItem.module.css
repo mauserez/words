@@ -45,6 +45,11 @@
 	flex-shrink: 0;
 }
 
+.word::first-letter {
+	text-transform: uppercase;
+}
+
 .type {
 	font-style: italic;
+	white-space: nowrap;
 }

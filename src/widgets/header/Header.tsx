@@ -1,4 +1,4 @@
-import { Star } from "../../shared/icons";
+import { Star } from "../../shared/ui/icons";
 import { Link } from "react-router-dom";
 
 import s from "./Header.module.css";

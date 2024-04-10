@@ -1,9 +1,12 @@
-.itemContainer {
+.container {
 	border-radius: 4px;
 	overflow: hidden;
+	background-position: 0;
+	transform: translate(0, 0);
+	transform: translateZ(0);
 }
 
-.itemContainer:hover {
+.container:hover {
 	box-shadow: 0 0 12px #dedede;
 }
 
@@ -58,11 +61,15 @@
 	flex-shrink: 0;
 }
 
-.type {
-	font-style: italic;
+.word::first-letter {
+	text-transform: uppercase;
 }
 
-.meaningWrap {
-	padding: 16px;
-	display: flex;
+.type {
+	font-style: italic;
+	white-space: nowrap;
+}
+
+.star {
+	width: 24px;
 }

@@ -1,11 +1,9 @@
 //import { useAppSelector } from "../../../shared/redux/hooks";
-import {
-	Book,
-	getBooks /* , getWords, Word */,
-} from "../../../shared/api/words";
-
+import { WordFromApi, getWords } from "../../../shared/api/words";
 import { ChangeEvent, useEffect, useState } from "react";
-import { Input } from "../../../shared/input/Input";
+import { useDebounce } from "../../../shared/hooks/useDebounce";
+import { plural } from "../../../shared/helpers/number";
+
 import {
 	SearchList,
 	SearchLoading,
@@ -13,54 +11,52 @@ import {
 	SearchStart,
 } from "../../../entities/search-words";
 
-import { useDebounce } from "../../../shared/hooks/useDebounce";
+import { Input, Select, Pagination } from "../../../shared/ui";
 import s from "../style.module.css";
 
-type SearchWord = { term: string };
-
 export const SearchWords = () => {
-	const [search, setSearch] = useState<SearchWord>({
-		term: "",
-	});
-
+	const [search, setSearch] = useState<string>("");
 	const [isLoading, setIsLoading] = useState(false);
+	const [words, setWords] = useState<WordFromApi[]>([]);
+	const [wordsByPage, setWordsByPage] = useState<WordFromApi[]>([]);
+	const [limit, setLimit] = useState(10);
 
 	const debouncedSearch = useDebounce(search, 500);
-	const [books, setBooks] = useState<Book[]>([]);
-
-	//const [words, setWords] = useState<Word[]>([]);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearch({ ...search, term: e.target.value });
+		setSearch(e.target.value);
 	};
-	const controller = new AbortController();
+
+	const handleLimitChange = (e: ChangeEvent<HTMLSelectElement>) => {
+		setLimit(Number(e.target.value));
+	};
+
+	const showWords = async () => {
+		const values = await getWords(debouncedSearch);
+		setWords(values);
+		setWordsByPage(values.splice(0, limit));
+		setIsLoading(false);
+	};
+
+	const handleWordsByPage = (page: number) => {
+		const from = page <= 1 ? 0 : (page - 1) * limit;
+		const pageWords = [...words].splice(from, limit);
+		setWordsByPage(pageWords);
+	};
 
 	useEffect(() => {
-		if (!debouncedSearch.term) {
-			setBooks([]);
+		if (!debouncedSearch) {
+			setWords([]);
 			return;
 		}
 
-		/* getWords("books", { term: debouncedSearch.term }, controller.signal).then(
-			(words) => {
-				console.log(words);
-			}
-		); */
 		setIsLoading(true);
+		showWords();
+	}, [debouncedSearch.trim()]);
 
-		getBooks(`books?priceTo=${debouncedSearch.term}`, controller.signal).then(
-			(data) => {
-				if (data) {
-					setBooks(data.result.books);
-					setIsLoading(false);
-				}
-			}
-		);
-
-		return () => {
-			controller.abort();
-		};
-	}, [debouncedSearch]);
+	useEffect(() => {
+		handleWordsByPage(1);
+	}, [limit]);
 
 	return (
 		<div>
@@ -68,14 +64,32 @@ export const SearchWords = () => {
 			<div className={s.container}>
 				<div className={s.searchContainer}>
 					<Input onChange={handleInputChange} />
+					<div>
+						<Select label="Лимит" onChange={handleLimitChange}>
+							<option>10</option>
+							<option>15</option>
+							<option>20</option>
+						</Select>
+					</div>
 				</div>
 				<div>
-					{!debouncedSearch.term ? (
+					{!debouncedSearch ? (
 						<SearchStart />
 					) : isLoading ? (
 						<SearchLoading />
-					) : Array.isArray(books) && books.length > 0 ? (
-						<SearchList items={books} />
+					) : Array.isArray(words) && words.length > 0 ? (
+						<div className={s.listWrap}>
+							<div>
+								Всего найдено {words.length}{" "}
+								{plural(words.length, "значение", "значения", "значений")}
+							</div>
+							<SearchList items={wordsByPage} />
+							<Pagination
+								handlePage={handleWordsByPage}
+								count={words?.length || 0}
+								limit={limit}
+							/>
+						</div>
 					) : (
 						<SearchNotFound />
 					)}

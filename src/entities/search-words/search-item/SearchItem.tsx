@@ -1,29 +1,49 @@
-import { Star } from "../../../shared/icons";
-import { Book } from "../../../shared/api/words";
+import { useAppSelector, useAppDispatch } from "../../../shared/redux/hooks";
+import {
+	addMeaning,
+	removeMeaning,
+} from "../../../shared/redux/slices/words/wordsSlice";
+
+import { Star } from "../../../shared/ui/icons";
+import { WordFromApi } from "../../../shared/api/words";
+
 import s from "./SearchItem.module.css";
-import { useState } from "react";
 
 type SearchItemProps = {
-	item: Book;
+	item: WordFromApi;
 };
+
 export const SearchItem = (props: SearchItemProps) => {
 	const { item } = props;
-	const [starred, setStarred] = useState(false);
+	const dispatch = useAppDispatch();
+
+	const meaningExists = useAppSelector((state) =>
+		state.words.words.some((word) => {
+			if (!word) {
+				return false;
+			}
+
+			return word.meanings.some((meaning) => meaning.id === item.id);
+		})
+	);
+
 	return (
 		<div className={s.itemContainer}>
-			<div className={s.item} key={item.id}>
+			<div className={s.item}>
 				<div className={s.info}>
-					<div className={s.word}>{item.name}</div>
-					<div className={s.type}>{item.currency.currency_name}</div>
-					<div className={s.infoText}>{item.description}</div>
+					<div className={s.word}>{item.word}</div>
+					<div className={s.type}>{item.partOfSpeech}</div>
+					<div className={s.infoText}>{item.text}</div>
 				</div>
 
 				<div>
 					<Star
 						onClick={() => {
-							setStarred(!starred);
+							!meaningExists
+								? dispatch(addMeaning(item))
+								: dispatch(removeMeaning(item));
 						}}
-						active={starred}
+						active={meaningExists}
 						size={24}
 					/>
 				</div>

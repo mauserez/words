@@ -1,62 +1,35 @@
-import { GenericAbortSignal } from "axios";
 import { wordsApi } from "../../axios/wordsApi";
 
-type GetWordsParams = {
-	term: string;
-};
-
-export type Word = {
-	name: string;
-	meanings: Meaning[];
-};
-
-type Meaning = {
-	type: string;
-	text: string;
-};
-
-export const getWords = async (
-	endpoint: string,
-	params: GetWordsParams,
-	signal?: GenericAbortSignal
-) => {
-	const { term } = params;
-
-	return await wordsApi
-		.get<Word[]>(`/${term}`, { signal: signal })
-		.then((res) => {
-			return res.data;
-		})
-		.catch((e) => {
-			console.log(e);
-		});
-};
-
-export type BooksResult = {
-	success: boolean;
-	result: { bookCount: number; books: Book[] };
-};
-
-export type Book = {
+export type WordFromApi = {
 	id: string;
-	description: string;
-	name: string;
-	price: string;
-	currency: {
-		currency_name: string;
-	};
+	word: string;
+	text: string;
+	partOfSpeech: string;
 };
 
-export const getBooks = async (
-	endpoint: string,
-	signal?: GenericAbortSignal
-) => {
-	return await wordsApi
-		.get<BooksResult>(`/${endpoint}`, { signal: signal })
+export const getWords = async (word: string) => {
+	return wordsApi
+		.get<WordFromApi[]>(`/${word.toLowerCase()}/definitions?limit=50`)
 		.then((res) => {
-			return res.data;
+			const words =
+				res.data
+					.filter((word) => {
+						return !!word.id && !!word.text && !!word.partOfSpeech;
+					})
+					//.slice(0, 10)
+					.map((word) => {
+						return {
+							id: word.id,
+							word: word.word,
+							text: word.text,
+							partOfSpeech: word.partOfSpeech,
+						};
+					}) || [];
+
+			return words;
 		})
 		.catch((e) => {
 			console.log(e);
+			return [];
 		});
 };

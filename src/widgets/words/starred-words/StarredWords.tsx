@@ -1,13 +1,12 @@
 import { useState } from "react";
-
 import { useAppSelector } from "../../../shared/redux/hooks";
 import {
 	SearchWordPayload,
-	selectWordTypes,
-	selectWords,
+	memoSelectWords,
+	memoSelectWordTypes,
 } from "../../../shared/redux/slices/words/wordsSlice";
 
-import { Input } from "../../../shared/input/Input";
+import { Input } from "../../../shared/ui";
 import { StarredList } from "../../../entities/starred-words";
 
 import clsx from "clsx";
@@ -17,11 +16,11 @@ import s from "./StarredWords.module.css";
 export const StarredWords = () => {
 	const [search, setSearch] = useState<SearchWordPayload>({
 		text: "",
-		types: [],
+		partsOfSpeech: [],
 	});
 
-	const types = useAppSelector((state) => selectWordTypes(state));
-	const words = useAppSelector((state) => selectWords(state, search));
+	const types = useAppSelector((state) => memoSelectWordTypes(state));
+	const words = useAppSelector((state) => memoSelectWords(state, search));
 
 	return (
 		<div>
@@ -34,23 +33,28 @@ export const StarredWords = () => {
 						}}
 					/>
 					<div className={s.checks}>
-						{types.map((type) => (
-							<div className={s.checksItem} key={type}>
+						{types.map((partOfSpeech) => (
+							<div className={s.checksItem} key={partOfSpeech}>
 								<div
 									onClick={() => {
-										const newSearchTypes = search.types.includes(type)
-											? search.types.filter((stype) => stype !== type)
-											: [...search.types, type];
+										const newSearchTypes = search.partsOfSpeech.includes(
+											partOfSpeech
+										)
+											? search.partsOfSpeech.filter(
+													(stype) => stype !== partOfSpeech
+												)
+											: [...search.partsOfSpeech, partOfSpeech];
 
-										setSearch({ ...search, types: newSearchTypes });
+										setSearch({ ...search, partsOfSpeech: newSearchTypes });
 									}}
 									className={clsx({
 										[s.check]: true,
-										[s.checkActive]: search.types.includes(type),
+										[s.checkActive]:
+											search.partsOfSpeech.includes(partOfSpeech),
 									})}
 								></div>
 
-								<div className={s.type}>{type}</div>
+								<div className={s.type}>{partOfSpeech}</div>
 							</div>
 						))}
 					</div>
