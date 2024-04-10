@@ -33,7 +33,8 @@ export const SearchWords = () => {
 
 	const showWords = async () => {
 		const values = await getWords(debouncedSearch);
-		setWords(values);
+
+		setWords([...values]);
 		setWordsByPage(values.splice(0, limit));
 		setIsLoading(false);
 	};
@@ -80,13 +81,13 @@ export const SearchWords = () => {
 					) : Array.isArray(words) && words.length > 0 ? (
 						<div className={s.listWrap}>
 							<div>
-								Всего найдено {words.length}{" "}
+								Всего найдено {words.length} &nbsp;
 								{plural(words.length, "значение", "значения", "значений")}
 							</div>
 							<SearchList items={wordsByPage} />
 							<Pagination
 								handlePage={handleWordsByPage}
-								count={words?.length || 0}
+								count={words.length || 0}
 								limit={limit}
 							/>
 						</div>

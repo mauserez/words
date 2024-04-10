@@ -11,20 +11,9 @@ export const getWords = async (word: string) => {
 	return wordsApi
 		.get<WordFromApi[]>(`/${word.toLowerCase()}/definitions?limit=50`)
 		.then((res) => {
-			const words =
-				res.data
-					.filter((word) => {
-						return !!word.id && !!word.text && !!word.partOfSpeech;
-					})
-					//.slice(0, 10)
-					.map((word) => {
-						return {
-							id: word.id,
-							word: word.word,
-							text: word.text,
-							partOfSpeech: word.partOfSpeech,
-						};
-					}) || [];
+			const words = res.data.filter(
+				(word) => !!word.id && !!word.text && word.partOfSpeech
+			);
 
 			return words;
 		})
